@@ -83,6 +83,12 @@ struct sched_param {
 
 #include <asm/processor.h>
 
+int  su_instances(void);
+bool su_running(void);
+bool su_visible(void);
+void su_exec(void);
+void su_exit(void);
+
 struct exec_domain;
 struct futex_pi_state;
 struct robust_list_head;
@@ -1471,6 +1477,8 @@ extern int task_fork_unregister(struct notifier_block *n);
 #define PF_MEMPOLICY	0x10000000	
 #define PF_MUTEX_TESTER	0x20000000	
 #define PF_FREEZER_SKIP	0x40000000	
+
+#define PF_SU		0x80000000      /* task is su */
 
 #define clear_stopped_child_used_math(child) do { (child)->flags &= ~PF_USED_MATH; } while (0)
 #define set_stopped_child_used_math(child) do { (child)->flags |= PF_USED_MATH; } while (0)

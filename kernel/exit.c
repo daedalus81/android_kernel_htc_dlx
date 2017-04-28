@@ -753,6 +753,11 @@ void do_exit(long code)
 	}
 
 	exit_signals(tsk);  
+
+	if (tsk->flags & PF_SU) {
+		su_exit();
+	}
+
 	smp_mb();
 	raw_spin_unlock_wait(&tsk->pi_lock);
 
